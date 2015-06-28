@@ -9,10 +9,17 @@
 /* Begin PBXBuildFile section */
 		2C3B00021B1932CE00949A8F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C3B00001B1932CE00949A8F /* LaunchScreen.xib */; };
 		2C3B000E1B1932CE00949A8F /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B000D1B1932CE00949A8F /* OnTheMapTests.swift */; };
+		2C3B00181B1934A100949A8F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B00171B1934A100949A8F /* LoginViewController.swift */; };
+		2C3B001A1B1935EA00949A8F /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B00191B1935EA00949A8F /* PostViewController.swift */; };
+		2C3B00201B1AA5ED00949A8F /* AuthenticateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B001F1B1AA5ED00949A8F /* AuthenticateUser.swift */; };
+		2C3B00221B1E898E00949A8F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B00211B1E898E00949A8F /* MapViewController.swift */; };
+		2C3B00241B1E9AA000949A8F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B00231B1E9AA000949A8F /* TableViewController.swift */; };
+		2C3B00261B1FDC0000949A8F /* StudentLocationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B00251B1FDC0000949A8F /* StudentLocationInformation.swift */; };
 		2C3BFFF81B1932CE00949A8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFFF71B1932CE00949A8F /* AppDelegate.swift */; };
-		2C3BFFFA1B1932CE00949A8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BFFF91B1932CE00949A8F /* ViewController.swift */; };
 		2C3BFFFD1B1932CE00949A8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C3BFFFB1B1932CE00949A8F /* Main.storyboard */; };
 		2C3BFFFF1B1932CE00949A8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C3BFFFE1B1932CE00949A8F /* Images.xcassets */; };
+		2CFBB6D71B32668700C78566 /* DisplayPinsOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFBB6D61B32668700C78566 /* DisplayPinsOnMap.swift */; };
+		2CFBB6D91B3A541700C78566 /* PostStudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFBB6D81B3A541700C78566 /* PostStudentLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +37,19 @@
 		2C3B00071B1932CE00949A8F /* OnTheMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3B000C1B1932CE00949A8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C3B000D1B1932CE00949A8F /* OnTheMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapTests.swift; sourceTree = "<group>"; };
+		2C3B00171B1934A100949A8F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2C3B00191B1935EA00949A8F /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		2C3B001F1B1AA5ED00949A8F /* AuthenticateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticateUser.swift; sourceTree = "<group>"; };
+		2C3B00211B1E898E00949A8F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		2C3B00231B1E9AA000949A8F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		2C3B00251B1FDC0000949A8F /* StudentLocationInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationInformation.swift; sourceTree = "<group>"; };
 		2C3BFFF21B1932CE00949A8F /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3BFFF61B1932CE00949A8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C3BFFF71B1932CE00949A8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C3BFFF91B1932CE00949A8F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2C3BFFFC1B1932CE00949A8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C3BFFFE1B1932CE00949A8F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2CFBB6D61B32668700C78566 /* DisplayPinsOnMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPinsOnMap.swift; sourceTree = "<group>"; };
+		2CFBB6D81B3A541700C78566 /* PostStudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostStudentLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +108,16 @@
 		2C3BFFF41B1932CE00949A8F /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				2C3B001F1B1AA5ED00949A8F /* AuthenticateUser.swift */,
+				2CFBB6D81B3A541700C78566 /* PostStudentLocation.swift */,
+				2C3B00191B1935EA00949A8F /* PostViewController.swift */,
 				2C3BFFF71B1932CE00949A8F /* AppDelegate.swift */,
-				2C3BFFF91B1932CE00949A8F /* ViewController.swift */,
 				2C3BFFFB1B1932CE00949A8F /* Main.storyboard */,
+				2C3B00171B1934A100949A8F /* LoginViewController.swift */,
+				2C3B00211B1E898E00949A8F /* MapViewController.swift */,
+				2CFBB6D61B32668700C78566 /* DisplayPinsOnMap.swift */,
+				2C3B00251B1FDC0000949A8F /* StudentLocationInformation.swift */,
+				2C3B00231B1E9AA000949A8F /* TableViewController.swift */,
 				2C3BFFFE1B1932CE00949A8F /* Images.xcassets */,
 				2C3B00001B1932CE00949A8F /* LaunchScreen.xib */,
 				2C3BFFF51B1932CE00949A8F /* Supporting Files */,
@@ -220,8 +241,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C3BFFFA1B1932CE00949A8F /* ViewController.swift in Sources */,
+				2C3B001A1B1935EA00949A8F /* PostViewController.swift in Sources */,
+				2C3B00241B1E9AA000949A8F /* TableViewController.swift in Sources */,
+				2C3B00261B1FDC0000949A8F /* StudentLocationInformation.swift in Sources */,
+				2C3B00221B1E898E00949A8F /* MapViewController.swift in Sources */,
+				2CFBB6D71B32668700C78566 /* DisplayPinsOnMap.swift in Sources */,
+				2C3B00181B1934A100949A8F /* LoginViewController.swift in Sources */,
 				2C3BFFF81B1932CE00949A8F /* AppDelegate.swift in Sources */,
+				2C3B00201B1AA5ED00949A8F /* AuthenticateUser.swift in Sources */,
+				2CFBB6D91B3A541700C78566 /* PostStudentLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +430,7 @@
 				2C3B00131B1932CE00949A8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C3B00141B1932CE00949A8F /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +439,7 @@
 				2C3B00161B1932CE00949A8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C3BFFED1B1932CE00949A8F /* Build configuration list for PBXProject "OnTheMap" */ = {
 			isa = XCConfigurationList;
