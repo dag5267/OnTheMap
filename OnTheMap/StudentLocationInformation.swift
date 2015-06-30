@@ -122,7 +122,7 @@ class StudentLocationInformation {
     }
     
     func getStudentLocationInfo(completionHandler: (error: NSError?) -> Void)
-    {        
+    {
         let recordLimit = 100 //limit download to 100 entries
         
         //modified example code from Udacity API
@@ -134,16 +134,17 @@ class StudentLocationInformation {
             if error != nil { // Handle error...
                 completionHandler(error: error)
                 println("Error getting student information")
-            }
-            
-            //populate structure with alll student data
-            let parseResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as! NSDictionary
-            if let studentLocationItems = parseResults["results"] as? [studentInfoDict] { //get array of students
-                self.arrayStudentInfo.removeAll(keepCapacity: false) //delete any old student items in the array
-                for nextStudentLocation in studentLocationItems { //add all students to array
-                    self.addStudentInfo(studentInfoItem(dictItem: nextStudentLocation)) //add this student
+            } else {
+                
+                //populate structure with alll student data
+                let parseResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as! NSDictionary
+                if let studentLocationItems = parseResults["results"] as? [studentInfoDict] { //get array of students
+                    self.arrayStudentInfo.removeAll(keepCapacity: false) //delete any old student items in the array
+                    for nextStudentLocation in studentLocationItems { //add all students to array
+                        self.addStudentInfo(studentInfoItem(dictItem: nextStudentLocation)) //add this student
+                    }
+                    completionHandler(error: nil); //complete with no errors
                 }
-                completionHandler(error: nil); //complete with no errors
             }
         }
         task.resume()

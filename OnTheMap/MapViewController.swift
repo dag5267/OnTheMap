@@ -11,6 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var viewMap: MKMapView!
     
     var downLoadFailMsg: String? = nil
@@ -24,7 +25,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func refreshMapView(sender: AnyObject) {
-        loadMapView()
+        loadMapView() //refresh map
     }
     
     @IBAction func logout(sender: AnyObject) {
@@ -35,6 +36,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func loadMapView() {
         //refresh student information array and update view
+        NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
+            self.refreshActivityIndicator.startAnimating() //show activity monitor while refreshing
+        }
         appDelegate.studentLocationInformation.getStudentLocationInfo() { (error) in
             if error == nil { //getting student location information was successful
                 dump(self.appDelegate.studentLocationInformation.arrayStudentInfo)
@@ -55,7 +59,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
                 println("\(error)")
             }
-        }
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
+                self.refreshActivityIndicator.stopAnimating() //show activity monitor while refreshing
+            }
+       }
     }
     
     func displayAlert(message: String)

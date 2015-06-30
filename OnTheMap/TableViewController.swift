@@ -13,6 +13,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var downLoadFailMsg: String? = nil
     
@@ -52,6 +53,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func refreshTableView(sender: AnyObject) {
+        NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
+            self.refreshActivityIndicator.startAnimating() //show activity monitor while refreshing
+        }
+        
         //refresh student information array and update view
         appDelegate.studentLocationInformation.getStudentLocationInfo() { (error) in
             if error == nil { //getting student location information was successful
@@ -67,6 +72,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 println("\(error)")
             }
+            NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
+                self.refreshActivityIndicator.stopAnimating() //show activity monitor while refreshing
+            }
+
         }
     }
     

@@ -24,7 +24,7 @@ class AuthenticateUser {
     
     //function logs into Udacity site
     func login (userInfo: userLoginInfo, completionHandler: (success: Bool, errorString: String?, retError: NSError?, authFail: Bool? ) -> Void) {
-
+        
         self.appDelegate.userInfo.sessionID = nil //reset sessionID
         
         var error: NSError? = nil
@@ -39,47 +39,49 @@ class AuthenticateUser {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         request.HTTPBody = convJSON
-
+        
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // exit with error
                 completionHandler(success: false, errorString: "Login error occured during POST", retError: error, authFail: nil)
-            }
-            //get response data
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            
-            //determine login if authentication failed or passed
-            var parseError: NSError? = nil
-            
-            //convert JSON response to dictionary
-            let jsonParseResult = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: &parseError) as! NSDictionary
-            if let account = jsonParseResult["account"] as? NSDictionary { //get account information
-                if let registered = account["registered"] as? Bool { //get registration status
-                    if registered == true { //user successfully logged in
-                        self.appDelegate.userInfo.userID = account["key"] as? String
-                        if let session = jsonParseResult["session"] as? NSDictionary { //get session information
-                            if let sessionID = session["id"] as? String { //get session ID
-                                self.appDelegate.userInfo.sessionID = sessionID //store session ID for later use
-                                self.getUserPublicInfo() //get UserID
-                            } else { //unable to get sessionID
-                                completionHandler(success: false, errorString: "Session ID not found", retError: nil, authFail: true)
+            } else { //no errors
+                //get response data
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+                
+                //determine login if authentication failed or passed
+                var parseError: NSError? = nil
+                
+                //convert JSON response to dictionary
+                let jsonParseResult = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: &parseError) as! NSDictionary
+                if let account = jsonParseResult["account"] as? NSDictionary { //get account information
+                    if let registered = account["registered"] as? Bool { //get registration status
+                        if registered == true { //user successfully logged in
+                            self.appDelegate.userInfo.userID = account["key"] as? String
+                            if let session = jsonParseResult["session"] as? NSDictionary { //get session information
+                                if let sessionID = session["id"] as? String { //get session ID
+                                    self.appDelegate.userInfo.sessionID = sessionID //store session ID for later use
+                                    self.getUserPublicInfo() //get UserID
+                                } else { //unable to get sessionID
+                                    completionHandler(success: false, errorString: "Session ID not found", retError: nil, authFail: true)
+                                }
+                            } else { // unable to get session information
+                                completionHandler(success: false, errorString: "Session information not found", retError: nil, authFail: true)
                             }
-                        } else { // unable to get session information
-                            completionHandler(success: false, errorString: "Session information not found", retError: nil, authFail: true)
+                            completionHandler(success: true, errorString: nil, retError: nil, authFail: nil) //indicate successful login
+                        } else { //registered == false, assume that this is a authenctication failed login
+                            completionHandler(success: false, errorString: "Not registered", retError: nil, authFail: true)
                         }
-                        completionHandler(success: true, errorString: nil, retError: nil, authFail: nil) //indicate successful login
-                    } else { //registered == false, assume that this is a authenctication failed login
-                        completionHandler(success: false, errorString: "Not registered", retError: nil, authFail: true)
+                    } else { //unexpected error, API returned account information but no registration statu...assume authentication failed and not connection failure because a response was returned
+                        completionHandler(success: false, errorString: "Not registration information provided", retError: nil, authFail: true)
                     }
-                } else { //unexpected error, API returned account information but no registration statu...assume authentication failed and not connection failure because a response was returned
-                    completionHandler(success: false, errorString: "Not registration information provided", retError: nil, authFail: true)
-                }
-            } else { //unexpected error.  convert to JSON was successfull, but data expected was not found
-                completionHandler(success: false, errorString: "Expected JSON dictionary not found", retError: nil, authFail: true)
-            }            
+                } else { //unexpected error.  convert to JSON was successfull, but data expected was not found
+                    completionHandler(success: false, errorString: "Expected JSON dictionary not found", retError: nil, authFail: true)
+                }            
+            }
         }
+        
         task.resume()
     }
     

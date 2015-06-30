@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!    
     @IBOutlet weak var txtPassword: UITextField!
     
+    @IBOutlet weak var loginActivityMonitor: UIActivityIndicatorView!
     var authFailMsg: String? = nil
     
     override func viewWillAppear(animated: Bool) {
@@ -25,6 +26,10 @@ class LoginViewController: UIViewController {
         //create login credential object
         var loginInfo: AuthenticateUser.userLoginInfo = ["udacity": ["username": txtEmail.text, "password": txtPassword.text]]
         var Authenticate = AuthenticateUser()  //instantiate authentication object
+ 
+        NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
+            self.loginActivityMonitor.startAnimating() //show activity monitor while attempting to login
+        }
         
         Authenticate.login(loginInfo) { success, strError, error, authFail in
             if success == true { //login was successfull
@@ -32,6 +37,9 @@ class LoginViewController: UIViewController {
                 //segue to table tabbed view
                 NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
                     self.performSegueWithIdentifier("TabView", sender: self)  //go to tab view
+                }
+                NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
+                self.loginActivityMonitor.stopAnimating()  //stop activity indicator
                 }
             } else { //login failed, determine if authentication failed
                 
@@ -47,7 +55,10 @@ class LoginViewController: UIViewController {
                     self.displayAlert(self.authFailMsg!)
                 }
             }
-        }
+            NSOperationQueue.mainQueue().addOperationWithBlock { //switch to main thread
+            self.loginActivityMonitor.stopAnimating()  //stop activity indicator
+            }
+       }
     }
     
     func displayAlert(message: String)
